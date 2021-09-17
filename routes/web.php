@@ -15,7 +15,7 @@ Route::get('logout', [
     'uses' => 'Auth\AuthController@getLogout'
 ]);
 
-Route::name('js.')->group(function() {
+Route::name('js.')->group(function () {
     Route::get('js.dynamic', 'JsController@dynamic')->name('dynamic');
 });
 
@@ -163,7 +163,7 @@ Route::group(['middleware' => 'auth'], function () {
         'as' => 'profile.sessions.invalidate',
         'uses' => 'ProfileController@invalidateSession'
     ]);
-     /**
+    /**
      * Front Page
      */
     Route::get('home', [
@@ -171,7 +171,7 @@ Route::group(['middleware' => 'auth'], function () {
         'uses' => 'HomeController@index'
     ]);
 
-     /**
+    /**
      * Content Management
      */
     Route::get('content', [
@@ -184,9 +184,121 @@ Route::group(['middleware' => 'auth'], function () {
         'uses' => 'ContentController@create'
     ]);
 
-    Route::post('content/create', [
+    Route::post('content/store', [
         'as' => 'content.store',
         'uses' => 'ContentController@store'
+    ]);
+
+    /**
+     * Certificate Library
+     */
+    Route::get('certificate', [
+        'as' => 'certificate.list',
+        'uses' => 'CertificateController@index'
+    ]);
+
+    /**
+     * Outside Services - Sampling 
+     */
+    Route::get('sampling', [
+        'as' => 'sampling.list',
+        'uses' => 'SamplingController@index'
+    ]);
+
+    /**
+     * Outside Services - Filtration 
+     */
+    Route::get('filtration', [
+        'as' => 'filtration.list',
+        'uses' => 'FiltrationController@index'
+    ]);
+
+    /**
+     * Product Commercialization - Etods Sampling Kit
+     */
+    Route::get('product-etods-kit', [
+        'as' => 'product-etods-kit.list',
+        'uses' => 'ProductEtodsKitController@index'
+    ]);
+
+    /**
+     * Product Commercialization - Rubber Adaptor
+     */
+    Route::get('product-rubber-adaptor', [
+        'as' => 'product-rubber-adaptor.list',
+        'uses' => 'ProductRubberAdaptorController@index'
+    ]);
+
+    /**
+     * Quality Control
+     */
+    Route::get('quality-control', [
+        'as' => 'quality-control.list',
+        'uses' => 'QCController@index'
+    ]);
+
+    /**
+     * Quality Assurance
+     */
+    Route::get('quality-assurance', [
+        'as' => 'quality-assurance.list',
+        'uses' => 'QAController@index'
+    ]);
+
+    /**
+     * Financial Management
+     */
+    Route::get('financial', [
+        'as' => 'financial.list',
+        'uses' => 'FinancialController@index'
+    ]);
+
+    /**
+     * Staff Training - Training Record
+     */
+    Route::get('training-record', [
+        'as' => 'training-record.list',
+        'uses' => 'TrainingRecordController@index'
+    ]);
+
+    /**
+     * Staff Training - Training Supplier Record
+     */
+    Route::get('training-supplier-record', [
+        'as' => 'training-supplier-record.list',
+        'uses' => 'TrainingSupplierRecordController@index'
+    ]);
+
+    /**
+     * Staff Training - CSI Record
+     */
+    Route::get('csi-record', [
+        'as' => 'csi-record.list',
+        'uses' => 'CSIRecordController@index'
+    ]);
+
+    /**
+     * Waste Management - Schedule
+     */
+    Route::get('waste-record', [
+        'as' => 'waste-record.list',
+        'uses' => 'WasteController@index'
+    ]);
+
+    /**
+     * Waste Management - Supplier Record
+     */
+    Route::get('waste-supplier-record', [
+        'as' => 'waste-supplier-record.list',
+        'uses' => 'WasteSupplierController@index'
+    ]);
+
+    /**
+     * Staff Performance
+     */
+    Route::get('staff-performance', [
+        'as' => 'staff-performance.list',
+        'uses' => 'StaffPerformanceController@index'
     ]);
 
     /**
@@ -332,7 +444,7 @@ Route::group(['middleware' => 'auth'], function () {
         'middleware' => 'permission:settings.auth'
     ]);
 
-// Only allow managing 2FA if AUTHY_KEY is defined inside .env file
+    // Only allow managing 2FA if AUTHY_KEY is defined inside .env file
     if (env('AUTHY_KEY')) {
         Route::post('settings/auth/2fa/enable', [
             'as' => 'settings.auth.2fa.enable',

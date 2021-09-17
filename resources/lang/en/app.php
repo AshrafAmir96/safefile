@@ -378,5 +378,28 @@ return [
     //Content
     'content' => 'Content Management',
     'create_new_content' => 'Create New Content',
-    
+
+    // !
+    'certificate' => 'Certificate Library',
+
+    'outside_services_sampling' => 'Outside Services (Sampling)',
+    'outside_services_filtration' => 'Outside Services (Filtration)',
+
+    'product-etods-kit' => 'EtODS Sampling Kit',
+    'product-rubber-adaptor' => 'Rubber Adaptor',
+
+    'quality-control' => 'Quality Control',
+
+    'quality-assurance' => 'Quality Assurance',
+
+    'financial' => 'Financial Management',
+
+    'training_record' => 'Training Record',
+    'training_supplier_record' => 'Training Supplier Record',
+    'training_csi_record' => 'CSI Record',
+
+    'waste' => 'Waste Management',
+    'waste-supplier' => 'Waste Supplier Record',
+
+    'staff_performance' => 'Staff Performance',
 ];
