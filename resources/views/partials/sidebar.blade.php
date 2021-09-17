@@ -16,10 +16,54 @@
         <li class="menu-header">Management</li>
         <li class="{{ Request::is('content*') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('content.list') }}">
-                <i class="fas fa-file"></i> 
-                 <span>Content</span>
+                <i class="fas fa-industry"></i> 
+                 <span>@lang('app.laboratory')</span>
             </a>
         </li>
+        <li class="{{ Request::is('content*') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('content.list') }}">
+                <i class="fa fa-warehouse"></i>
+                 <span>@lang('app.in_house')</span>
+            </a>
+        </li>
+        <li class="{{ Request::is('content*') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('content.list') }}">
+                <i class="fas fa-user"></i> 
+                 <span>@lang('app.user_interface')</span>
+            </a>
+        </li>
+        <li class="{{ Request::is('content*') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('content.list') }}">
+                <i class="fas fa-vials"></i> 
+                 <span>@lang('app.laboratory_instru')</span>
+            </a>
+        </li>
+        <li class="{{ Request::is('content*') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('content.list') }}">
+                <i class="fas fa-chart-area"></i> 
+                 <span>@lang('app.data_analysis')</span>
+            </a>
+        </li>
+        <li class="{{ Request::is('content*') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('content.list') }}">
+                <i class="fas fa-desktop"></i> 
+                 <span>@lang('app.tender_monitor')</span>
+            </a>
+        </li>
+        <li class="{{ Request::is('content*') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('content.list') }}">
+                <i class="fas fa-dolly-flatbed"></i> 
+                 <span>@lang('app.iventory_consumable')</span>
+            </a>
+        </li>
+        <li class="{{ Request::is('content*') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('content.list') }}">
+                <i class="fas fa-file-alt"></i> 
+                 <span>@lang('app.iso_control')</span>
+            </a>
+        </li>
+       
+      
         <li class="menu-header">Administration</li>
         @permission(['roles.manage', 'permissions.manage'])
         @permission('users.manage')

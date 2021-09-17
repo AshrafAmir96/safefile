@@ -378,5 +378,41 @@ return [
     //Content
     'content' => 'Content Management',
     'create_new_content' => 'Create New Content',
+
+    //Laboratory Management.
+    'laboratory' => 'Laboratory',
+
+    //In-House System (ACTMS)
+    'in_house' => 'In-House System',
+    
+    //User Interface for External Customer
+    'user_interface' => 'User Interface',
+
+    //Laboratory Instruments Management.
+    'laboratory_instru' => 'Laboratory Instruments',
+
+    //Data Analysis (Trending) / Visualization.
+    'data_analysis' => 'Analysis & Visualization',
+
+    //Tender Monitoring.
+    'tender_monitor' => 'Tender Monitoring',
+
+    //Inventory Consumable / Chemicals management
+    'iventory_consumable' => 'Inventory & Chemicals ',
+
+    //ISO Controlled Documentation
+    'iso_control' => 'ISO Controlled',
+
+    //Certificate Library
+    'cert_library' => 'Certificate Library',
+
+    //Outside Service (Sampling / Filtration)
+    'outside_service' => 'Outside Service (Sampling / Filtration)',
+
+    //Product Commercialization
+    'product_comm' => 'Product Commercialization',
+
+    //Quality Control
+    'quality_control' => 'Quality Control',
     
 ];
