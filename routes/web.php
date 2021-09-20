@@ -189,6 +189,101 @@ Route::group(['middleware' => 'auth'], function () {
         'uses' => 'ContentController@store'
     ]);
 
+     /**
+     * Laboratory Management
+     */
+    Route::get('laboratory', [
+        'as' => 'laboratory.list',
+        'uses' => 'LaboratoryController@index'
+    ]);
+
+     /**
+     * ACTMS
+     */
+    Route::get('registration', [
+        'as' => 'registration.list',
+        'uses' => 'RegistrationController@index'
+    ]);
+
+    Route::get('validation', [
+        'as' => 'validation.list',
+        'uses' => 'RegistrationController@validationlist'
+    ]);
+
+    Route::get('approval', [
+        'as' => 'approval.list',
+        'uses' => 'RegistrationController@approvallist'
+    ]);
+
+    Route::get('reporting', [
+        'as' => 'reporting.list',
+        'uses' => 'RegistrationController@reporting'
+    ]);
+
+    /**
+     * Customer Interfaces
+     */
+    Route::get('customer_sas', [
+        'as' => 'customer_sas.list',
+        'uses' => 'CustomerController@index'
+    ]);
+
+    Route::get('customer_invoice', [
+        'as' => 'customer_invoice.list',
+        'uses' => 'CustomerController@customer_invoice_list'
+    ]);
+
+    Route::get('customer_spec', [
+        'as' => 'customer_spec.list',
+        'uses' => 'CustomerController@customer_spec_list'
+    ]);
+
+    Route::get('customer_cer', [
+        'as' => 'customer_cer.list',
+        'uses' => 'CustomerController@customer_cer_list'
+    ]);
+
+
+      /**
+     * Laboratory Instruments
+     */
+    Route::get('lab_instrument', [
+        'as' => 'lab_instrument.list',
+        'uses' => 'LabInstrumentController@index'
+    ]);
+
+          /**
+     * Data Analysis / Visualization
+     */
+    Route::get('data_analysis', [
+        'as' => 'data_analysis.list',
+        'uses' => 'DataAnalysisController@index'
+    ]);
+
+          /**
+     * Tender Monitoring System
+     */
+    Route::get('tender', [
+        'as' => 'tender.list',
+        'uses' => 'TenderController@index'
+    ]);
+
+          /**
+     * Inventory
+     */
+    Route::get('inventory', [
+        'as' => 'inventory.list',
+        'uses' => 'InventoryController@index'
+    ]);
+
+          /**
+     * Document Controlled / COA / Calibration Certificate
+     */
+    Route::get('document', [
+        'as' => 'document.list',
+        'uses' => 'DocumentController@index'
+    ]);
+
     /**
      * Certificate Library
      */

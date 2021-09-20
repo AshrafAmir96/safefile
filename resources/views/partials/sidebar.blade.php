@@ -14,50 +14,72 @@
             </a>
         </li>
         <li class="menu-header">Management</li>
-        <li class="{{ Request::is('content*') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('content.list') }}">
+        <li class="{{ Request::is('laboratory*') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('laboratory.list') }}">
                 <i class="fas fa-industry"></i> 
                  <span>@lang('app.laboratory')</span>
             </a>
         </li>
-        <li class="{{ Request::is('content*') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('content.list') }}">
-                <i class="fa fa-warehouse"></i>
-                 <span>@lang('app.in_house')</span>
-            </a>
+        <li class="nav-item dropdown {{ Request::is('registration*') || Request::is('validation*') || Request::is('approval*') || Request::is('reporting*') ? 'active' : '' }}">
+            <a href="#" class="nav-link has-dropdown"><i class="fas fa-warehouse"></i> <span>@lang('app.in_house')</span></a>
+            <ul class="dropdown-menu">
+                <li class="{{ Request::is('registration*') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('registration.list') }}">Registration</a>
+                </li>
+                <li class="{{ Request::is('validation*') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('validation.list') }}">Validation</a>
+                </li>
+                <li class="{{ Request::is('approval*') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('approval.list') }}">Approval</a>
+                </li>
+                <li class="{{ Request::is('reporting*') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('reporting.list') }}">Reporting</a>
+                </li>
+            </ul>
         </li>
-        <li class="{{ Request::is('content*') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('content.list') }}">
-                <i class="fas fa-user"></i> 
-                 <span>@lang('app.user_interface')</span>
-            </a>
+        <li class="nav-item dropdown {{ Request::is('customer_sas*') || Request::is('customer_invoice*') || Request::is('customer_spec*') || Request::is('customer_cer*') ? 'active' : '' }}">
+            <a href="#" class="nav-link has-dropdown"><i class="fas fa-user"></i> <span>@lang('app.user_interface')</span></a>
+            <ul class="dropdown-menu">
+                <li class="{{ Request::is('customer_sas*') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('customer_sas.list') }}">Customer Satisfaction</a>
+                </li>
+                <li class="{{ Request::is('customer_invoice*') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('customer_invoice.list') }}">Invoices</a>
+                </li>
+                <li class="{{ Request::is('customer_spec*') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('customer_spec.list') }}">Specification for Quotation</a>
+                </li>
+                <li class="{{ Request::is('customer_cer*') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('customer_cer.list') }}">Certificated Tracking</a>
+                </li>
+            </ul>
         </li>
-        <li class="{{ Request::is('content*') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('content.list') }}">
+        <li class="{{ Request::is('lab_instrument*') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('lab_instrument.list') }}">
                 <i class="fas fa-vials"></i> 
                  <span>@lang('app.laboratory_instru')</span>
             </a>
         </li>
-        <li class="{{ Request::is('content*') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('content.list') }}">
+        <li class="{{ Request::is('data_analysis*') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('data_analysis.list') }}">
                 <i class="fas fa-chart-area"></i> 
                  <span>@lang('app.data_analysis')</span>
             </a>
         </li>
-        <li class="{{ Request::is('content*') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('content.list') }}">
+        <li class="{{ Request::is('tender*') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('tender.list') }}">
                 <i class="fas fa-desktop"></i> 
                  <span>@lang('app.tender_monitor')</span>
             </a>
         </li>
-        <li class="{{ Request::is('content*') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('content.list') }}">
+        <li class="{{ Request::is('inventory*') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('inventory.list') }}">
                 <i class="fas fa-dolly-flatbed"></i> 
                  <span>@lang('app.iventory_consumable')</span>
             </a>
         </li>
-        <li class="{{ Request::is('content*') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('content.list') }}">
+        <li class="{{ Request::is('document*') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('document.list') }}">
                 <i class="fas fa-file-alt"></i> 
                  <span>@lang('app.iso_control')</span>
             </a>

@@ -8,19 +8,22 @@
     <div class="col-md-6">
         <div class="card">
             <div class="card-header">
-                Content Uploaded Chart
+                System Performance
             </div>
             <div class="card-body">
                 <div class="pt-4 px-3">
-                    <canvas id="donut" height="200"></canvas>
+                    <canvas id="donut" height="390"></canvas>
                 </div>
+            </div>
+            <div class="card-footer text-center">
+               <h1>80%</h1>
             </div>
         </div>
     </div>
     <div class="col-md-6">
         <div class="card">
             <div class="card-header">
-                User Uploaded by Month Chart
+                System Performance by Month
             </div>
             <div class="card-body">
                 <div class="pt-4 px-3">
@@ -28,7 +31,30 @@
                 </div>
             </div>
         </div>
+        <div class="card">
+            <div class="card-header">
+                
+            </div>
+            <div class="card-body">
+                <div class="pt-4 px-3">
+                    <canvas id="bar_graph" style="width:100%;max-width:600px"></canvas>
+                </div>
+            </div>
+        </div>
     </div>
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                
+            </div>
+            <div class="card-body">
+                <div class="pt-4 px-3">
+                    <canvas id="bar_graph2" style="width:100%;max-height:500px"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+   
 </div>
 
 <div class="row">
@@ -148,19 +174,18 @@
             users: "{{ trans('app.users_sm') }}"
         };
 
-        var xValues = ["Documents", "Videos", "Pictures"];
-        var yValues = [1,4,2];
+        var xValues = ["Documents", "Videos"];
+        var yValues = [80,20];
         var barColors = [
-        "#80bfff",
-        "#cc99ff",
-        "#0066cc"
+        "#33cc33",
+        "#999999"
         
         ];
 
         new Chart("donut", {
         type: "doughnut",
         data: {
-            labels: xValues,
+         
             datasets: [{
             backgroundColor: barColors,
             data: yValues
@@ -168,7 +193,7 @@
         },
         options: {
             title: {
-            display: true,
+            display: false,
             text: "Type of Content"
             }
         }
@@ -183,21 +208,57 @@
         data: {
             labels: xValues,
             datasets: [{
-            data: [0,0,0,0,0,0,0,0,1],
-            borderColor: "80bfff",
-            fill: false
-            },{
-            data: [0,0,0,0,0,0,0,0,4],
-            borderColor: "cc99ff",
-            fill: false
-            },{
-            data: [0,0,0,0,0,0,0,0,2],
-            borderColor: "#0066cc",
+            data: [70,72,90,100,80,90,88,92,96],
+            borderColor: "#80bfff",
             fill: false
             }]
         },
         options: {
             legend: {display: false}
+        }
+        });
+
+        var xValues3 = ["Johor", "Selangor", "Perlis", "Kedah", "Pahang"];
+        var yValues3 = [55, 90, 80, 60, 120];
+        var barColors3= ["#80bfff", "#80bfff","#80bfff","#80bfff","#80bfff"];
+
+        new Chart("bar_graph", {
+        type: "bar",
+        data: {
+            labels: xValues3,
+            datasets: [{
+            backgroundColor: barColors3,
+            data: yValues3
+            }]
+        },
+        options: {
+            legend: {display: false},
+            title: {
+            display: true,
+            text: "Customer by State"
+            }
+        }
+        });
+
+        var xValues4 = ["Malaysia", "Indonesia", "Thailand", "Philippines", "India","Brunei","Singapore","Japan","Germany","Australia"];
+        var yValues4 = [55, 49, 44, 24, 42, 60, 51, 50, 52, 40];
+        var barColors4= ["#80bfff", "#80bfff","#80bfff","#80bfff","#80bfff","#80bfff","#80bfff","#80bfff","#80bfff","#80bfff"];
+
+        new Chart("bar_graph2", {
+        type: "bar",
+        data: {
+            labels: xValues4,
+            datasets: [{
+            backgroundColor: barColors4,
+            data: yValues4
+            }]
+        },
+        options: {
+            legend: {display: false},
+            title: {
+            display: true,
+            text: "Customer by Country"
+            }
         }
         });
     </script>

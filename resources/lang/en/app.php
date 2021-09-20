@@ -381,12 +381,26 @@ return [
 
     //Laboratory Management.
     'laboratory' => 'Laboratory',
+    'laboratory_management' => 'Laboratory Management',
+    'add_laboratory' => 'Add Laboratory',
+    'search_laboratory' => 'Search Laboratory ...',
 
     //In-House System (ACTMS)
-    'in_house' => 'In-House System',
+    'in_house' => 'In-House System (ACTMS)',
+    'search_registration' => 'Ref Number ...',
+    'add_registration' => 'Add Registration',
+    'allocate' => 'Allocate',
+    'validation' => 'Validation',
+    'approval' => 'Approval',
+    'reporting' => 'Reporting',
+
     
     //User Interface for External Customer
     'user_interface' => 'User Interface',
+    'csi' => 'CSI – Customer Satisfaction Index',
+    'invoice' => 'Invoice',
+    'specification' => 'Specification for Quotation',
+    'certicate_tracking' => 'Certificated Tracking',
 
     //Laboratory Instruments Management.
     'laboratory_instru' => 'Laboratory Instruments',
@@ -401,7 +415,7 @@ return [
     'iventory_consumable' => 'Inventory & Chemicals ',
 
     //ISO Controlled Documentation
-    'iso_control' => 'ISO Controlled',
+    'iso_control' => 'Document Controlled',
 
     //Certificate Library
     'cert_library' => 'Certificate Library',
