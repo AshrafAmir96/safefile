@@ -669,3 +669,28 @@ $router->get('install/error', [
     'as' => 'install.error',
     'uses' => 'InstallController@error'
 ]);
+
+$router->get('file_application/index', [
+    'as' => 'file_application.index',
+    'uses' => 'FileApplicationController@index'
+]);
+
+$router->get('file_application/create', [
+    'as' => 'file_application.create',
+    'uses' => 'FileApplicationController@create'
+]);
+
+$router->get('file_application/edit/{file_application}', [
+    'as' => 'file_application.edit',
+    'uses' => 'FileApplicationController@edit'
+]);
+
+$router->put('file_application/update/{file_application}', [
+    'as' => 'file_application.update',
+    'uses' => 'FileApplicationController@update'
+]);
+
+$router->get('file_application/delete/{file_application}', [
+    'as' => 'file_application.delete',
+    'uses' => 'FileApplicationController@destroy'
+]);

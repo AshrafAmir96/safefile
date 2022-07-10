@@ -14,13 +14,19 @@
             </a>
         </li>
         <li class="menu-header">Management</li>
+        <li class="{{ Request::is('file_application/create') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('file_application.create') }}">
+                <i class="fas fa-file-export"></i>
+                 <span>@lang('app.file_application')</span>
+            </a>
+        </li>
         <li class="{{ Request::is('laboratory*') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('laboratory.list') }}">
                 <i class="fas fa-industry"></i> 
                  <span>@lang('app.laboratory')</span>
             </a>
         </li>
-        <li class="nav-item dropdown {{ Request::is('registration*') || Request::is('validation*') || Request::is('approval*') || Request::is('reporting*') ? 'active' : '' }}">
+        {{-- <li class="nav-item dropdown {{ Request::is('registration*') || Request::is('validation*') || Request::is('approval*') || Request::is('reporting*') ? 'active' : '' }}">
             <a href="#" class="nav-link has-dropdown"><i class="fas fa-warehouse"></i> <span>@lang('app.in_house')</span></a>
             <ul class="dropdown-menu">
                 <li class="{{ Request::is('registration*') ? 'active' : '' }}">
@@ -37,7 +43,7 @@
                 </li>
             </ul>
         </li>
-        <li class="nav-item dropdown {{ Request::is('customer_sas*') || Request::is('customer_invoice*') || Request::is('customer_spec*') || Request::is('customer_cer*') ? 'active' : '' }}">
+         <li class="nav-item dropdown {{ Request::is('customer_sas*') || Request::is('customer_invoice*') || Request::is('customer_spec*') || Request::is('customer_cer*') ? 'active' : '' }}">
             <a href="#" class="nav-link has-dropdown"><i class="fas fa-user"></i> <span>@lang('app.user_interface')</span></a>
             <ul class="dropdown-menu">
                 <li class="{{ Request::is('customer_sas*') ? 'active' : '' }}">
@@ -161,7 +167,7 @@
                  <span>Staff Performance</span>
             </a>
         </li>
-        <li class="menu-header">Administration</li>
+        <li class="menu-header">Administration</li> --}}
         @permission(['roles.manage', 'permissions.manage'])
         @permission('users.manage')
         <li class="{{ Request::is('user*') ? 'active' : '' }}">

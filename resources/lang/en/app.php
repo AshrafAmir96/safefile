@@ -452,4 +452,40 @@ return [
     'waste-supplier' => 'Waste Supplier Record',
 
     'staff_performance' => 'Staff Performance',
+
+    //File Application
+    'file_application' => 'File Application',
+    'land_transaction' => 'Land Transaction',
+    'jofa' => 'JOFA',
+    'land_grant' => 'Land Grant',
+    'land_plan' => 'Land Plan',
+    'app_num' => 'Application Number',
+    'jofa_type'=> 'JOFA Type',
+    'file_type' => 'File Type',
+    'file_num' => 'File Number',
+    'other_ref' => 'Land Grant Number/Plan Number',
+    'save' => 'Save',
+    'send' => 'Send',
+    'delete' => 'Delete',
+    'create_file_application' => 'New Application',
+    
+    //Statuses
+    'draft' => 'Draft',
+    'in_process' => 'Processing',
+    'approved' => 'Approved',
+    'rejected' => 'Rejected',
+    'file_issued' => 'File Issued',
+    'file_returned' => 'File Returned',
+    
+    //Selection
+    'select_file_types' => 'Select File Type',
+    'select_jofa_types' => 'Select JOFA Type',
+    'select_statuses' => 'Select Status',
+
+    //Placeholder
+    'placeholder_file_num' => 'Please insert file number',
+    'placeholder_other_ref' => 'Please insert land grant number or plan number ',
+
+    // Message
+    'file_application_update_success' => 'File application has been saved!',
 ];

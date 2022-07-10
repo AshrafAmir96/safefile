@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Events\User\Banned;
 use App\Events\User\LoggedIn;
 use App\Events\User\Registered;
+use App\FileApplication;
 use App\Listeners\Users\InvalidateSessionsAndTokens;
 use App\Listeners\Login\UpdateLastLoginTimestamp;
 use App\Listeners\PermissionEventsSubscriber;
@@ -13,6 +14,7 @@ use App\Listeners\Registration\SendConfirmationPhone;
 use App\Listeners\Registration\SendSignUpNotification;
 use App\Listeners\RoleEventsSubscriber;
 use App\Listeners\UserEventsSubscriber;
+use App\Observers\FileApplicationObserver;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 class EventServiceProvider extends ServiceProvider
@@ -55,6 +57,7 @@ class EventServiceProvider extends ServiceProvider
     public function boot()
     {
         parent::boot();
+        FileApplication::observe(FileApplicationObserver::class);
 
         //
     }
