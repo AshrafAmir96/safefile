@@ -23,13 +23,13 @@
             <div class="dropdown-list-content dropdown-list-icons">
             @if(Auth::user()->unreadNotifications->count())
                 @foreach(Auth::user()->unreadNotifications as $notification)
-                <a href="#" class="dropdown-item dropdown-item-unread">
-                    <div class="dropdown-item-icon bg-primary text-white">
-                        <i class="fas fa-code"></i>
+                <a href="{{ $notification->data['url'] }}" class="dropdown-item dropdown-item-unread">
+                    <div class="dropdown-item-icon  {{ $notification->data['color'] }} text-white">
+                        <i class="fas  {{ $notification->data['icon'] }}"></i>
                     </div>
                     <div class="dropdown-item-desc">
-                        {{ $notification->data['data'] }}
-                        <div class="time text-primary">2 Min Ago</div>
+                        @lang($notification->data['data'])
+                        <div class="time text-primary">{{$notification->created_at->diffForHumans()}}</div>
                     </div>
                 </a>
                 @endforeach

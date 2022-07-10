@@ -478,6 +478,8 @@ return [
     'update_application' => 'Update Application',
     'approve' => 'Approve',
     'reject' => 'Reject',
+    'application_approval' => 'File Application Approval',
+    'rack_num' => 'Rack Number',
 
     //File Transaction
     'file_transaction' => 'File Transaction',
@@ -505,4 +507,7 @@ return [
     'file_application_cannot_update' => 'Unable to edit the application',
     'application_success_delete' => 'File application has been deleted',
     'search_for_application' => 'Search for File Application',
+    'application_submitted' => 'New file application has been submitted and require approval.',
+    'application_approved' => 'Your file application has been approved!',
+    'application_rejected' => 'Your file application has been rejected!',
 ];

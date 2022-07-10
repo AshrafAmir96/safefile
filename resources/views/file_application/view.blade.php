@@ -26,7 +26,11 @@
             </div>
             <div class="card">
                 <div class="card-body">
-                    <div class="float-right h5">@lang('app.status') : {!! $statuses[$file_application->status] !!}</div>
+                    <div class="float-right">
+                        <span class="badge badge-lg badge-{{ $color_statuses[$file_application->status] }}">
+                            {!! $statuses[$file_application->status] !!}
+                        </span>
+                    </div>
                     <div class="form-group">
                         <label for="app_num">@lang('app.app_num')</label>
                         <div class="my-2 h6 font-weight-bold">{!! $file_application->ref_num !!}</div>
@@ -57,9 +61,17 @@
                         <label for="other_ref">@lang('app.received_at')</label>
                         <div class="my-2 h6 font-weight-bold">{!!$file_application->received_at ? $file_application->received_at->format(config('app.date_time_format')) : '' !!}</div>
                     </div>
+                    <div class="form-group">
+                        <label for="rack_num">@lang('app.rack_num')</label>
+                        <div class="my-2 h6 font-weight-bold">{!!$file_application->rack_num !!}</div>
+                    </div>
                 </div>
             </div>
             <div class="float-right">
+                @if ($file_application->status == 2)
+                <a class="btn btn-primary"
+                    href="{{ route('file_application.approve', $file_application->id) }}">@lang('app.application_approval')</a>
+                @endif
                 @if ($file_application->status == 1)
                     <a class="btn btn-primary"
                         href="{{ route('file_application.edit', $file_application->id) }}">@lang('app.edit_application')</a>

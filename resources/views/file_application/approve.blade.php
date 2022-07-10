@@ -1,7 +1,7 @@
 @extends('layouts.admin-master')
 
-@section('page-title', trans('app.file_application'))
-@section('page-heading', trans('app.file_application'))
+@section('page-title', trans('app.application_approval'))
+@section('page-heading', trans('app.application_approval'))
 
 @section('breadcrumbs')
     <div class="section-header-breadcrumb">
@@ -12,7 +12,7 @@
             {!! $file_application->ref_num !!}
         </div>
         <div class="breadcrumb-item">
-            @lang('app.edit')
+            @lang('app.application_approval')
         </div>
     </div>
 @stop
@@ -29,7 +29,11 @@
                 {!! Form::open(['route' => ['file_application.approve', $file_application->id], 'method' => 'PUT', 'id' => 'file-application-form']) !!}
                 <div class="card">
                     <div class="card-body">
-                        <div class="float-right h4">{!! $statuses[$file_application->status] !!}</div>
+                        <div class="float-right">
+                            <span class="badge badge-lg badge-{{ $color_statuses[$file_application->status] }}">
+                                {!! $statuses[$file_application->status] !!}
+                            </span>
+                        </div>
                     <div class="form-group">
                         <label for="app_num">@lang('app.app_num')</label>
                         <div class="h5">{!! $file_application->ref_num !!}</div>
