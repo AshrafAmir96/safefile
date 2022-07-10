@@ -675,6 +675,11 @@ $router->get('file_application/index', [
     'uses' => 'FileApplicationController@index'
 ]);
 
+$router->get('file_application/show/{file_application}', [
+    'as' => 'file_application.show',
+    'uses' => 'FileApplicationController@show'
+]);
+
 $router->get('file_application/create', [
     'as' => 'file_application.create',
     'uses' => 'FileApplicationController@create'

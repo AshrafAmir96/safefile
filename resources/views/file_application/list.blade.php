@@ -1,14 +1,14 @@
 @extends('layouts.admin-master')
 
-@section('page-title', trans('app.file_application'))
-@section('page-heading', trans('app.file_application'))
+@section('page-title', trans('app.file_application_list'))
+@section('page-heading', trans('app.file_application_list'))
 
 @section('breadcrumbs')
     <div class="section-header-breadcrumb">
         <div class="breadcrumb-item">
             <a href="{{ route('file_application.index') }}">@lang('app.management')</a>
         </div>
-        <div class="breadcrumb-item">@lang('app.file_application')</div>
+        <div class="breadcrumb-item">@lang('app.file_application_list')</div>
     </div>
 @stop
 
@@ -62,8 +62,10 @@
                 <thead>
                 <tr>
                     <th class="min-width-150">@lang('app.app_num')</th>
+                    <th class="min-width-100">@lang('app.file_num')</th>
                     <th class="min-width-100">@lang('app.file_type')</th>
                     <th class="min-width-80">@lang('app.created_at')</th>
+                    <th class="min-width-80">@lang('app.received_at')</th>
                     <th class="min-width-80">@lang('app.status')</th>
                     <th class="text-center min-width-80">@lang('app.action')</th>
                 </tr>

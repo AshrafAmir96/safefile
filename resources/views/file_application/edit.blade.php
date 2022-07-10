@@ -23,10 +23,13 @@
 
     <div class="row">
         <div class="col-12 col-md-6 mx-auto">
+                <div class="my-2">
+                    <a class="btn btn-link" href="{{ route('file_application.index') }}">@lang('app.return_file_application_list')</a>
+                </div>
                 {!! Form::open(['route' => ['file_application.update', $file_application->id], 'method' => 'PUT', 'id' => 'file-application-form']) !!}
                 <div class="card">
                     <div class="card-body">
-                        <div class="float-right h4">{!! $statuses[$file_application->status] !!}</div>
+                        <div class="float-right h4 mt-2">@lang('app.status') : {!! $statuses[$file_application->status] !!}</div>
                         <div class="form-group">
                             <label for="app_num">@lang('app.app_num')</label>
                             <div class="h5">{!! $file_application->ref_num !!}</div>

@@ -277,6 +277,7 @@ return [
         'Authy' => App\Services\Auth\TwoFactor\Facade::class,
         'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
         'Agent' => Jenssegers\Agent\Facades\Agent::class,
+        'UserStamps' => Wildside\Userstamps\Userstamps::class,
 
     ],
 

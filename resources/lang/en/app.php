@@ -468,6 +468,15 @@ return [
     'send' => 'Send',
     'delete' => 'Delete',
     'create_file_application' => 'New Application',
+    'file_application_list' => 'File Application List',
+    'management' => 'Management',
+    'created_at' => 'Date Created',
+    'received_at' => 'Receive File Date',
+    'edit_application' => 'Edit Application',
+    'view_application' => 'View Application',
+    'return_file_application_list' => 'Return to File Application List',
+    'update_application' => 'Update Application',
+
     
     //Statuses
     'draft' => 'Draft',
@@ -488,4 +497,6 @@ return [
 
     // Message
     'file_application_update_success' => 'File application has been saved!',
+    'file_application_send_success' => 'Application has been sent!',
+    'file_application_cannot_update' => 'Unable to edit the application!',
 ];

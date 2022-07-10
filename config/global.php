@@ -36,5 +36,4 @@ return [
         6 => 'success'
     ],
 ]
-  
 ?>

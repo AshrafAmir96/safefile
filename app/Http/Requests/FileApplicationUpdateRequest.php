@@ -24,7 +24,7 @@ class FileApplicationUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'jofa_type' => 'required_if:file_type,2'
         ];
     }
 }

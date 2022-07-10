@@ -19,14 +19,18 @@ class CreateFileApplicationsTable extends Migration
             $table->unsignedSmallInteger('file_type')->nullable();
             $table->unsignedSmallInteger('jofa_type')->nullable();
             $table->unsignedSmallInteger('status')->default(1); //Set Default Draft
-            $table->date('received_at')->nullable();
+            $table->timestamp('received_at')->nullable();
             $table->string('file_num')->nullable();
             $table->string('other_ref')->nullable(); //no geran tanah/pelan 
             $table->string('rack_num')->nullable(); //no geran tanah/pelan 
             $table->string('rfid')->nullable(); //no geran tanah/pelan 
             $table->unsignedInteger('approved_by')->nullable();
             $table->uuid('file_transaction_id')->nullable();
+            $table->unsignedBigInteger('created_by')->nullable();
+            $table->unsignedBigInteger('updated_by')->nullable();
+            $table->unsignedBigInteger('deleted_by')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
 
         Schema::create('file_transactions', function (Blueprint $table) {
@@ -36,6 +40,11 @@ class CreateFileApplicationsTable extends Migration
             $table->string('rfid');
             $table->unsignedBigInteger('file_application_id');
             $table->enum('trx_type',['in','out']);
+            $table->unsignedBigInteger('created_by')->nullable();
+            $table->unsignedBigInteger('updated_by')->nullable();
+            $table->unsignedBigInteger('deleted_by')->nullable();
+            $table->timestamps();
+            $table->softDeletes();
         });
 
         Schema::table('file_applications', function (Blueprint $table){

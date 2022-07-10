@@ -14,19 +14,19 @@
             </a>
         </li>
         <li class="menu-header">Management</li>
-        <li class="{{ Request::is('file_application/create') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('file_application.create') }}">
+        <li class="{{ Request::is('file_application/index') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('file_application.index') }}">
                 <i class="fas fa-file-export"></i>
                  <span>@lang('app.file_application')</span>
             </a>
         </li>
-        <li class="{{ Request::is('laboratory*') ? 'active' : '' }}">
+         {{-- <li class="{{ Request::is('laboratory*') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('laboratory.list') }}">
                 <i class="fas fa-industry"></i> 
                  <span>@lang('app.laboratory')</span>
             </a>
         </li>
-        {{-- <li class="nav-item dropdown {{ Request::is('registration*') || Request::is('validation*') || Request::is('approval*') || Request::is('reporting*') ? 'active' : '' }}">
+       <li class="nav-item dropdown {{ Request::is('registration*') || Request::is('validation*') || Request::is('approval*') || Request::is('reporting*') ? 'active' : '' }}">
             <a href="#" class="nav-link has-dropdown"><i class="fas fa-warehouse"></i> <span>@lang('app.in_house')</span></a>
             <ul class="dropdown-menu">
                 <li class="{{ Request::is('registration*') ? 'active' : '' }}">

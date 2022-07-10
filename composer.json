@@ -28,7 +28,8 @@
         "proengsoft/laravel-jsvalidation": "2.5.*",
         "twilio/sdk": "^6.1",
         "tymon/jwt-auth": "1.0.0-rc.5",
-        "webpatser/laravel-countries": "dev-master"
+        "webpatser/laravel-countries": "dev-master",
+        "wildside/userstamps": "^2.2"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "3.2.*",

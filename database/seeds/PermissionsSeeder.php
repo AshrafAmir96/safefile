@@ -64,6 +64,13 @@ class PermissionsSeeder extends Seeder
             'removable' => false
         ]);
 
+        $permissions[] = Permission::create([
+            'name' => 'file_application.approve',
+            'display_name' => 'Approve/Reject File Application',
+            'description' => '',
+            'removable' => false
+        ]);
+
         $adminRole->attachPermissions($permissions);
     }
 }

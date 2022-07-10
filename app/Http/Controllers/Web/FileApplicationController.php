@@ -12,6 +12,12 @@ class FileApplicationController extends Controller
 
     use SelectionTrait;
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('session.database', ['only' => ['sessions', 'invalidateSession']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -30,7 +36,7 @@ class FileApplicationController extends Controller
 
         $file_applications = FileApplication::paginate(15);
 
-        return view('file_application.list', compact('file_types', 'jofa_types', 'statuses','color_statuses','file_applications'));
+        return view('file_application.list', compact('file_types', 'jofa_types', 'statuses', 'color_statuses', 'file_applications'));
     }
 
     /**
@@ -64,9 +70,13 @@ class FileApplicationController extends Controller
      * @param  \App\FileApplication  $fileApplication
      * @return \Illuminate\Http\Response
      */
-    public function show(FileApplication $fileApplication)
+    public function show(FileApplication $file_application)
     {
-        //
+        $file_types = $this->getSelectionArray('file_types', true);
+        $jofa_types = $this->getSelectionArray('jofa_types', true);
+        $statuses = $this->getSelectionArray('statuses', true);
+
+        return view('file_application.view', compact('file_types', 'jofa_types', 'statuses', 'file_application'));
     }
 
     /**
@@ -77,6 +87,11 @@ class FileApplicationController extends Controller
      */
     public function edit(FileApplication $file_application)
     {
+        if($file_application->status !== 1){
+            return redirect()->route('file_application.show',$file_application->id)
+            ->withErrors(trans('app.file_application_cannot_update'));
+        }
+
         $file_types = $this->getSelectionArray('file_types', true);
         $jofa_types = $this->getSelectionArray('jofa_types', true);
         $statuses = $this->getSelectionArray('statuses', true);
@@ -93,23 +108,39 @@ class FileApplicationController extends Controller
      */
     public function update(Request $request, FileApplication $file_application)
     {
-        $message = null;
-
+        $request->validate([
+            'jofa_type' => 'required_if:file_type,2',
+        ]);
+        
         switch ($request->action) {
             case 'save':
-                    $file_application->update([
-                        'file_type' => $request->file_type,
-                        'jofa_type' => $request->jofa_type ? $request->jofa_type : null,
-                    ]);
+                $file_application->update([
+                    'file_type' => $request->file_type,
+                    'jofa_type' => $request->jofa_type ? $request->jofa_type : null,
+                    'file_num'  => $request->file_num,
+                    'other_ref' => $request->other_ref,
+                ]);
 
-                    $message = trans('app.file_application_update_success');
+                return redirect()->route('file_application.index')
+                    ->withSuccess(trans('app.file_application_update_success'));
+                    
                 break;
 
             case 'delete':
-                return redirect()->route('file_application.delete',$file_application->id);
+                return redirect()->route('file_application.delete', $file_application->id);
                 break;
 
             case 'send':
+                $file_application->update([
+                    'file_type' => $request->file_type,
+                    'jofa_type' => $request->jofa_type ? $request->jofa_type : null,
+                    'file_num'  => $request->file_num,
+                    'other_ref' => $request->other_ref,
+                    'status' => 2,
+                ]);
+
+                return redirect()->route('file_application.index')
+                    ->withSuccess(trans('app.file_application_send_success'));
                 break;
         }
     }
