@@ -76,6 +76,15 @@
                     <a class="btn btn-primary"
                         href="{{ route('file_application.edit', $file_application->id) }}">@lang('app.edit_application')</a>
                 @endif
+                @if ($file_application->status == 3)
+                <a class="btn btn-primary"
+                    href="{{ route('file_application.issued', $file_application->id) }}">@lang('app.test_file_issued')</a>
+                @endif
+                @if ($file_application->status == 5)
+                <a class="btn btn-primary"
+                href="{{ route('file_application.returned', $file_application->id) }}">@lang('app.test_file_returned')</a>
+                @endif
+               
             </div>
         </div>
 

@@ -35,5 +35,11 @@ return [
         5 => 'success',
         6 => 'success'
     ],
+
+    'transaction_statuses' => [
+        '' => 'app.select_transaction_statuses',
+        'in' => 'app.in',
+        'out' => 'app.out',
+    ],
 ]
 ?>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\FileApplication;
+use App\FileTransaction;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Notifications\SendApplication;
@@ -32,11 +33,11 @@ class FileApplicationController extends Controller
         $jofa_types = $this->getSelectionArray('jofa_types', true);
         $statuses = $this->getSelectionArray('statuses', true);
         $color_statuses = $this->getSelectionArray('color_statuses', true);
-        $file_applications = FileApplication::where('deleted_at',null);
+        $file_applications = FileApplication::where('deleted_at', null);
         $search = $request->search;
         $status = $request->status;
 
-        if($search){
+        if ($search) {
             $file_applications->where(function ($q) use ($search) {
                 $q->where('ref_num', "like", "%{$search}%");
                 $q->orWhere('rack_num', 'like', "%{$search}%");
@@ -45,9 +46,9 @@ class FileApplicationController extends Controller
             });
         }
 
-        if($status){
+        if ($status) {
             $file_applications->where(function ($q) use ($status) {
-                $q->where('status',$status);
+                $q->where('status', $status);
             });
         }
 
@@ -60,7 +61,7 @@ class FileApplicationController extends Controller
         if ($status) {
             $file_applications->appends(['status' => $status]);
         }
-        
+
 
         return view('file_application.list', compact('file_types', 'jofa_types', 'statuses', 'color_statuses', 'file_applications'));
     }
@@ -104,7 +105,7 @@ class FileApplicationController extends Controller
         $color_statuses = $this->getSelectionArray('color_statuses', true);
 
 
-        return view('file_application.view', compact('file_types', 'jofa_types', 'statuses', 'file_application','color_statuses'));
+        return view('file_application.view', compact('file_types', 'jofa_types', 'statuses', 'file_application', 'color_statuses'));
     }
 
     /**
@@ -126,7 +127,7 @@ class FileApplicationController extends Controller
         $color_statuses = $this->getSelectionArray('color_statuses', true);
 
 
-        return view('file_application.edit', compact('file_types', 'jofa_types', 'statuses', 'file_application','color_statuses'));
+        return view('file_application.edit', compact('file_types', 'jofa_types', 'statuses', 'file_application', 'color_statuses'));
     }
 
     /**
@@ -177,11 +178,11 @@ class FileApplicationController extends Controller
                 $notification_data['message'] = 'app.application_submitted';
                 $notification_data['icon'] = 'fas fa-file';
                 $notification_data['color'] = 'bg-primary';
-                $notification_data['url'] = route('file_application.show',$file_application->id);
+                $notification_data['url'] = route('file_application.show', $file_application->id);
 
-                $admins = User::where('role_id',1)->get();
-        
-                foreach($admins as $admin){
+                $admins = User::where('role_id', 1)->get();
+
+                foreach ($admins as $admin) {
                     $admin->notify(new SendApplication($notification_data));
                 }
 
@@ -223,12 +224,12 @@ class FileApplicationController extends Controller
         $statuses = $this->getSelectionArray('statuses', true);
         $color_statuses = $this->getSelectionArray('color_statuses', true);
 
-        
 
-        return view('file_application.approve', compact('file_types', 'jofa_types', 'statuses', 'file_application','color_statuses'));
+
+        return view('file_application.approve', compact('file_types', 'jofa_types', 'statuses', 'file_application', 'color_statuses'));
     }
 
-    public function approve(Request $request,FileApplication $file_application)
+    public function approve(Request $request, FileApplication $file_application)
     {
         switch ($request->action) {
             case 'approve':
@@ -239,7 +240,8 @@ class FileApplicationController extends Controller
                 $file_application->update([
                     'status' => 3,
                     'received_at' => Carbon::parse($request->received_at),
-                    'rack_num' => Str::random(6)
+                    'rack_num' => Str::random(6),
+                    'approved_by' => auth()->user()->id,
                 ]);
 
                 //Notify user by In System Notification
@@ -247,12 +249,12 @@ class FileApplicationController extends Controller
                 $notification_data['message'] = 'app.application_approved';
                 $notification_data['icon'] = 'fas fa-check';
                 $notification_data['color'] = 'bg-success';
-                $notification_data['url'] = route('file_application.show',$file_application->id);
+                $notification_data['url'] = route('file_application.show', $file_application->id);
 
-                $user = User::where('id',$file_application->created_by)->first();
+                $user = User::where('id', $file_application->created_by)->first();
                 $user->notify(new SendApplication($notification_data));
 
-                return redirect()->route('file_application.show',$file_application->id)
+                return redirect()->route('file_application.show', $file_application->id)
                     ->withSuccess(trans('app.file_application_update_success'));
 
                 break;
@@ -262,20 +264,84 @@ class FileApplicationController extends Controller
                     'status' => 4,
                 ]);
 
-                  //Notify user by In System Notification
-                  $notification_data = [];
-                  $notification_data['message'] = 'app.application_rejected';
-                  $notification_data['icon'] = 'fas fa-x';
-                  $notification_data['color'] = 'bg-danger';
-                  $notification_data['url'] = route('file_application.show',$file_application->id);
-  
-                  $user = User::where('id',$file_application->created_by)->first();
-                  $user->notify(new SendApplication($notification_data));
+                //Notify user by In System Notification
+                $notification_data = [];
+                $notification_data['message'] = 'app.application_rejected';
+                $notification_data['icon'] = 'fas fa-x';
+                $notification_data['color'] = 'bg-danger';
+                $notification_data['url'] = route('file_application.show', $file_application->id);
+
+                $user = User::where('id', $file_application->created_by)->first();
+                $user->notify(new SendApplication($notification_data));
 
                 return redirect()->route('file_application.index')
                     ->withSuccess(trans('app.application_success_delete'));
                 break;
-
         }
     }
+
+    public function fileOut(FileApplication $file_application)
+    {
+        $rfid = Str::random(10);
+        $file_transaction = FileTransaction::create([
+            'id'=> Str::uuid(),
+            'file_num' => $file_application->file_num,
+            'rack_num' => $file_application->rack_num,
+            'rfid' => $rfid ,
+            'file_application_id' => $file_application->id,
+            'trx_type' => "out",
+        ]);
+
+        $file_application->update([
+            'file_transaction_id' => $file_transaction->id,
+            'rfid' => $rfid,
+            'status'=> 5,
+        ]);
+
+        //Notify user by In System Notification
+        $notification_data = [];
+        $notification_data['message'] = 'app.file_has_been_issued';
+        $notification_data['icon'] = 'fa-solid fa-arrow-right-from-bracket';
+        $notification_data['color'] = 'bg-success';
+        $notification_data['url'] = route('file_application.show', $file_application->id);
+
+        $user = User::where('id', $file_application->created_by)->first();
+        $user->notify(new SendApplication($notification_data));
+
+        return redirect()->route('file_application.show',$file_application->id)
+                    ->withSuccess(trans('app.file_has_been_issued'));
+    }
+
+    public function fileIn(FileApplication $file_application)
+    {
+        $rfid = $file_application->rfid;
+        $file_transaction = FileTransaction::create([
+            'id'=> Str::uuid(),
+            'file_num' => $file_application->file_num,
+            'rack_num' => $file_application->rack_num,
+            'rfid' => $rfid ,
+            'file_application_id' => $file_application->id,
+            'trx_type' => "in",
+        ]);
+
+        $file_application->update([
+            'file_transaction_id' => $file_transaction->id,
+            'status'=> 6,
+        ]);
+
+        //Notify user by In System Notification
+        $notification_data = [];
+        $notification_data['message'] = 'app.file_has_been_returned';
+        $notification_data['icon'] = 'fa-solid fa-arrow-right-to-bracket';
+        $notification_data['color'] = 'bg-success';
+        $notification_data['url'] = route('file_application.show', $file_application->id);
+
+        $user = User::where('id', $file_application->created_by)->first();
+        $user->notify(new SendApplication($notification_data));
+
+        return redirect()->route('file_application.show',$file_application->id)
+                    ->withSuccess(trans('app.file_has_been_returned'));
+    }
+
+    
 }

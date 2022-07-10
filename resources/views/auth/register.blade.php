@@ -82,7 +82,6 @@
                     @lang('app.register')
                 </button>
             </div>
-            @include('auth.social.buttons')
         </form>
         <div class="mt-4 text-center text-muted">
             @if (setting('reg_enabled'))

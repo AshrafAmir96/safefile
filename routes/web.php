@@ -709,3 +709,18 @@ $router->put('file_application/approve/{file_application}', [
     'as' => 'file_application.approve',
     'uses' => 'FileApplicationController@approve'
 ]);
+
+$router->get('file_application/issued/{file_application}', [
+    'as' => 'file_application.issued',
+    'uses' => 'FileApplicationController@fileOut'
+]);
+
+$router->get('file_application/returned/{file_application}', [
+    'as' => 'file_application.returned',
+    'uses' => 'FileApplicationController@fileIn'
+]);
+
+$router->get('file_transaction/index', [
+    'as' => 'file_transaction.index',
+    'uses' => 'FileTransactionController@index'
+]);

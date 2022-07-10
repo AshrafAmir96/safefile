@@ -35,10 +35,10 @@ class CreateFileApplicationsTable extends Migration
 
         Schema::create('file_transactions', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('file_num');
-            $table->string('rack_num');
-            $table->string('rfid');
-            $table->unsignedBigInteger('file_application_id');
+            $table->string('file_num')->nullable();
+            $table->string('rack_num')->nullable();
+            $table->string('rfid')->nullable();
+            $table->unsignedBigInteger('file_application_id')->nullable();
             $table->enum('trx_type',['in','out']);
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();

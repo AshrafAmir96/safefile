@@ -66,7 +66,7 @@ class PermissionsSeeder extends Seeder
 
         $permissions[] = Permission::create([
             'name' => 'file_application.approve',
-            'display_name' => 'Approve/Reject File Application',
+            'display_name' => 'File Application Approval',
             'description' => '',
             'removable' => false
         ]);

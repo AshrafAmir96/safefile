@@ -22,7 +22,7 @@
         </li>
         @permission('file_transaction.view')
             <li class="{{ Request::is('file_transaction/') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('file_application.index') }}">
+                <a class="nav-link" href="{{ route('file_transaction.index') }}">
                     <i class="fas fa-right-left"></i>
                     <span>@lang('app.file_transaction')</span>
                 </a>

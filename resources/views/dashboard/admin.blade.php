@@ -5,63 +5,10 @@
 
 @section('content')
 <div class="row">
-    <div class="col-md-6">
-        <div class="card">
-            <div class="card-header">
-                System Performance
-            </div>
-            <div class="card-body">
-                <div class="pt-4 px-3">
-                    <canvas id="donut" height="390"></canvas>
-                </div>
-            </div>
-            <div class="card-footer text-center">
-               <h1>80%</h1>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="card">
-            <div class="card-header">
-                System Performance by Month
-            </div>
-            <div class="card-body">
-                <div class="pt-4 px-3">
-                    <canvas id="multi_graph" height="200"></canvas>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-header">
-                
-            </div>
-            <div class="card-body">
-                <div class="pt-4 px-3">
-                    <canvas id="bar_graph" style="width:100%;max-width:600px"></canvas>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-12">
-        <div class="card">
-            <div class="card-header">
-                
-            </div>
-            <div class="card-body">
-                <div class="pt-4 px-3">
-                    <canvas id="bar_graph2" style="width:100%;max-height:500px"></canvas>
-                </div>
-            </div>
-        </div>
-    </div>
-   
-</div>
-
-<div class="row">
     <div class="col-lg-3 col-md-6 col-sm-6 col-12">
         <div class="card card-statistic-1">
             <div class="card-icon bg-primary">
-                <i class="fas fa-user"></i>
+                <i class="m-4 fas fa-user"></i>
             </div>
             <div class="card-wrap">
                 <div class="card-header">
@@ -76,7 +23,7 @@
     <div class="col-lg-3 col-md-6 col-sm-6 col-12">
         <div class="card card-statistic-1">
             <div class="card-icon bg-success">
-                <i class="fas fa-user-plus"></i>
+                <i class="m-4 fas fa-user-plus"></i>
             </div>
             <div class="card-wrap">
                 <div class="card-header">
@@ -91,7 +38,7 @@
     <div class="col-lg-3 col-md-6 col-sm-6 col-12">
         <div class="card card-statistic-1">
             <div class="card-icon bg-warning">
-                <i class="fas fa-user-clock"></i>
+                <i class="m-4 fas fa-user-clock"></i>
             </div>
             <div class="card-wrap">
                 <div class="card-header">
@@ -106,7 +53,7 @@
     <div class="col-lg-3 col-md-6 col-sm-6 col-12">
         <div class="card card-statistic-1">
             <div class="card-icon bg-danger">
-                <i class="fas fa-user-lock"></i>
+                <i class="m-4 fas fa-user-lock"></i>
             </div>
             <div class="card-wrap">
                 <div class="card-header">
@@ -161,6 +108,34 @@
     </div>
 </div>
 
+<div class="row">
+    <div class="col-12 col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h5>@lang('app.application_number') ({!! Carbon\Carbon::now()->format('Y') !!})</h5>
+            </div>
+            <div class="card-body">
+                <div class="pt-4 px-3">
+                    <canvas id="multi_graph" height="100"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-4 text-center">
+                <h5>@lang('app.application_number_by_file')</h5>
+           
+                <div class="pt-4 px-3">
+                    <canvas id="donut" height="220"></canvas>
+                </div>
+                <h5 class="mt-4">@lang('app.application_number_by_jofa')</h5>
+
+                <div class="pt-4 px-3">
+                    <canvas id="donut2" height="220"></canvas>
+                </div>
+    </div>
+    </div>
+</div>
+
 @stop
 
 @section('scripts')
@@ -178,7 +153,7 @@
         var yValues = [80,20];
         var barColors = [
         "#33cc33",
-        "#999999"
+        "#80bfff"
         
         ];
 
@@ -199,6 +174,25 @@
         }
 
         });
+
+        new Chart("donut2", {
+        type: "doughnut",
+        data: {
+         
+            datasets: [{
+            backgroundColor: barColors,
+            data: [80,60]
+            }]
+        },
+        options: {
+            title: {
+            display: false,
+            text: "Type of Content"
+            }
+        }
+
+        });
+
 
 
         var xValues = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];

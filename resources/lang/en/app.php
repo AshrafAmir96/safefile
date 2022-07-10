@@ -480,9 +480,18 @@ return [
     'reject' => 'Reject',
     'application_approval' => 'File Application Approval',
     'rack_num' => 'Rack Number',
+    'test_file_issued' => 'File Transfer Out (Test)',
+    'test_file_returned' => 'File Transfer In (Test)',
 
     //File Transaction
     'file_transaction' => 'File Transaction',
+    'file_transaction_list' => 'File Transaction List',
+    'id' => 'ID',
+    'rfid' => 'RFID',
+    'trx_type' => 'Transaction Type',
+    'out' => 'Out',
+    'in' => 'In',
+ 
     
     //Statuses
     'draft' => 'Draft',
@@ -495,6 +504,7 @@ return [
     //Selection
     'select_file_types' => 'Select File Type',
     'select_jofa_types' => 'Select JOFA Type',
+    'select_transaction_statuses' => 'Select Transaction Status',
     'select_statuses' => 'Select Status',
 
     //Placeholder
@@ -510,4 +520,12 @@ return [
     'application_submitted' => 'New file application has been submitted and require approval.',
     'application_approved' => 'Your file application has been approved!',
     'application_rejected' => 'Your file application has been rejected!',
+    'file_has_been_issued' => 'File has been issued successfully!',
+    'file_has_been_returned' => 'File has been returned successfully!',
+    'search_for_transaction' => 'Search for File Transaction',
+
+    //Dashboard
+    'application_number' => 'Total File Application by Month',
+    'application_number_by_file' => 'Total Application by File Type',
+    'application_number_by_jofa' => 'Total Application by JOFA File Type',
 ];
