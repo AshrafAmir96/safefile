@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\FileApplication;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\FileApplicationUpdateRequest;
 use App\Traits\SelectionTrait;
 
 class FileApplicationController extends Controller
@@ -15,7 +16,6 @@ class FileApplicationController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('session.database', ['only' => ['sessions', 'invalidateSession']]);
     }
 
     /**
@@ -29,12 +29,35 @@ class FileApplicationController extends Controller
         $jofa_types = $this->getSelectionArray('jofa_types', true);
         $statuses = $this->getSelectionArray('statuses', true);
         $color_statuses = $this->getSelectionArray('color_statuses', true);
+        $file_applications = FileApplication::where('deleted_at',null);
+        $search = $request->search;
+        $status = $request->status;
 
-        // if($request->status){
+        if($search){
+            $file_applications->where(function ($q) use ($search) {
+                $q->where('ref_num', "like", "%{$search}%");
+                $q->orWhere('rack_num', 'like', "%{$search}%");
+                $q->orWhere('file_num', 'like', "%{$search}%");
+                $q->orWhere('other_ref', 'like', "%{$search}%");
+            });
+        }
 
-        // }
+        if($status){
+            $file_applications->where(function ($q) use ($status) {
+                $q->where('status',$status);
+            });
+        }
 
-        $file_applications = FileApplication::paginate(15);
+        $file_applications = $file_applications->paginate(15);
+
+        if ($search) {
+            $file_applications->appends(['search' => $search]);
+        }
+
+        if ($status) {
+            $file_applications->appends(['status' => $status]);
+        }
+        
 
         return view('file_application.list', compact('file_types', 'jofa_types', 'statuses', 'color_statuses', 'file_applications'));
     }
@@ -87,9 +110,9 @@ class FileApplicationController extends Controller
      */
     public function edit(FileApplication $file_application)
     {
-        if($file_application->status !== 1){
-            return redirect()->route('file_application.show',$file_application->id)
-            ->withErrors(trans('app.file_application_cannot_update'));
+        if ($file_application->status !== 1) {
+            return redirect()->route('file_application.show', $file_application->id)
+                ->withErrors(trans('app.file_application_cannot_update'));
         }
 
         $file_types = $this->getSelectionArray('file_types', true);
@@ -111,7 +134,7 @@ class FileApplicationController extends Controller
         $request->validate([
             'jofa_type' => 'required_if:file_type,2',
         ]);
-        
+
         switch ($request->action) {
             case 'save':
                 $file_application->update([
@@ -123,11 +146,14 @@ class FileApplicationController extends Controller
 
                 return redirect()->route('file_application.index')
                     ->withSuccess(trans('app.file_application_update_success'));
-                    
+
                 break;
 
             case 'delete':
-                return redirect()->route('file_application.delete', $file_application->id);
+                $file_application->delete();
+
+                return redirect()->route('file_application.index')
+                    ->withSuccess(trans('app.application_success_delete'));
                 break;
 
             case 'send':
@@ -156,6 +182,56 @@ class FileApplicationController extends Controller
         $file_application->delete();
 
         return redirect()->route('file_application.index')
-            ->withSuccess(trans('app.role_created'));
+            ->withSuccess(trans('app.application_success_delete'));
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\FileApplication  $fileApplication
+     * @return \Illuminate\Http\Response
+     */
+    public function approveForm(FileApplication $file_application)
+    {
+        if ($file_application->status !== 2) {
+            return redirect()->route('file_application.show', $file_application->id)
+                ->withErrors(trans('app.file_application_cannot_update'));
+        }
+
+        $file_types = $this->getSelectionArray('file_types', true);
+        $jofa_types = $this->getSelectionArray('jofa_types', true);
+        $statuses = $this->getSelectionArray('statuses', true);
+
+        return view('file_application.approve', compact('file_types', 'jofa_types', 'statuses', 'file_application'));
+    }
+
+    public function approve(Request $request,FileApplication $file_application)
+    {
+        switch ($request->action) {
+            case 'approve':
+                $request->validate([
+                    'received_at' => 'required',
+                ]);
+
+                $file_application->update([
+                    'status' => 3,
+                    'received_at' => $request->received_at,
+                ]);
+
+                return redirect()->route('file_application.index')
+                    ->withSuccess(trans('app.file_application_update_success'));
+
+                break;
+
+            case 'reject':
+                $file_application->update([
+                    'status' => 4,
+                ]);
+
+                return redirect()->route('file_application.index')
+                    ->withSuccess(trans('app.application_success_delete'));
+                break;
+
+        }
     }
 }

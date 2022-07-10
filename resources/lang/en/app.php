@@ -476,7 +476,11 @@ return [
     'view_application' => 'View Application',
     'return_file_application_list' => 'Return to File Application List',
     'update_application' => 'Update Application',
+    'approve' => 'Approve',
+    'reject' => 'Reject',
 
+    //File Transaction
+    'file_transaction' => 'File Transaction',
     
     //Statuses
     'draft' => 'Draft',
@@ -496,7 +500,9 @@ return [
     'placeholder_other_ref' => 'Please insert land grant number or plan number ',
 
     // Message
-    'file_application_update_success' => 'File application has been saved!',
-    'file_application_send_success' => 'Application has been sent!',
-    'file_application_cannot_update' => 'Unable to edit the application!',
+    'file_application_update_success' => 'File application has been saved',
+    'file_application_send_success' => 'Application has been sent',
+    'file_application_cannot_update' => 'Unable to edit the application',
+    'application_success_delete' => 'File application has been deleted',
+    'search_for_application' => 'Search for File Application',
 ];

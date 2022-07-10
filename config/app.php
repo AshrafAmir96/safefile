@@ -111,9 +111,9 @@ return [
     |
     */
 
-    'date_format' => 'Y-m-d',
+    'date_format' => 'd-m-Y',
 
-    'date_time_format' => 'Y-m-d \a\t h:i A',
+    'date_time_format' => 'd-m-Y h:i A',
 
     /*
     |--------------------------------------------------------------------------

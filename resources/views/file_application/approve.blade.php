@@ -11,7 +11,9 @@
         <div class="breadcrumb-item active">
             {!! $file_application->ref_num !!}
         </div>
- 
+        <div class="breadcrumb-item">
+            @lang('app.edit')
+        </div>
     </div>
 @stop
 
@@ -21,27 +23,28 @@
 
     <div class="row">
         <div class="col-12 col-md-6 mx-auto">
-            <div class="my-2">
-                <a class="btn btn-link" href="{{ route('file_application.index') }}">@lang('app.return_file_application_list')</a>
-            </div>
-            <div class="card">
-                <div class="card-body">
-                    <div class="float-right h5">@lang('app.status') : {!! $statuses[$file_application->status] !!}</div>
+                <div class="my-2">
+                    <a class="btn btn-link" href="{{ route('file_application.index') }}">@lang('app.return_file_application_list')</a>
+                </div>
+                {!! Form::open(['route' => ['file_application.approve', $file_application->id], 'method' => 'PUT', 'id' => 'file-application-form']) !!}
+                <div class="card">
+                    <div class="card-body">
+                        <div class="float-right h4">{!! $statuses[$file_application->status] !!}</div>
                     <div class="form-group">
                         <label for="app_num">@lang('app.app_num')</label>
-                        <div class="my-2 h6 font-weight-bold">{!! $file_application->ref_num !!}</div>
+                        <div class="h5">{!! $file_application->ref_num !!}</div>
                     </div>
                     <div class="row">
                         <div class="col-12 col-md-6">
                             <div class="form-group">
                                 <label for="file_type">@lang('app.file_type')</label>
-                        <div class="my-2 h6 font-weight-bold">{!! $file_application->file_type ? $file_types[$file_application->file_type] : null !!}</div>
+                                <div class="my-2 h6 font-weight-bold">{!! $file_application->file_type ? $file_types[$file_application->file_type] : null !!}</div>
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
                             <div class="form-group">
                                 <label for="jofa_type">@lang('app.jofa_type')</label>
-                        <div class="my-2 h6 font-weight-bold">{!! $file_application->jofa_type ? $jofa_types[$file_application->jofa_type] : null !!}</div>
+                                <div class="my-2 h6 font-weight-bold">{!! $file_application->jofa_type ? $jofa_types[$file_application->jofa_type] : null !!}</div>
                             </div>
                         </div>
                     </div>
@@ -53,18 +56,18 @@
                         <label for="other_ref">@lang('app.other_ref')</label>
                         <div class="my-2 h6 font-weight-bold">{!! $file_application->other_ref !!}</div>
                     </div>
-                    <div class="form-group">
-                        <label for="other_ref">@lang('app.received_at')</label>
-                        <div class="my-2 h6 font-weight-bold">{!!$file_application->received_at ? $file_application->received_at->format(config('app.date_time_format')) : '' !!}</div>
+                        <div class="form-group">
+                            <label for="received_at">@lang('app.received_at')</label>
+                            <input class="form-control" type="datetime-local" name="received_at" id="received_at"
+                                value="{!! $file_application->received_at !!}" />
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="float-right">
-                @if ($file_application->status == 1)
-                    <a class="btn btn-primary"
-                        href="{{ route('file_application.edit', $file_application->id) }}">@lang('app.edit_application')</a>
-                @endif
-            </div>
+                    <div class="float-right">
+                        <button class="btn btn-danger" name="action" value="reject">@lang('app.reject')</button>
+                        <button class="btn btn-primary" name="action" value="approve">@lang('app.approve')</button>
+                    </div>
+                {!! Form::close() !!}
         </div>
 
 

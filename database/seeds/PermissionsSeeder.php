@@ -71,6 +71,13 @@ class PermissionsSeeder extends Seeder
             'removable' => false
         ]);
 
+        $permissions[] = Permission::create([
+            'name' => 'file_transaction.view',
+            'display_name' => 'View File Transaction',
+            'description' => '',
+            'removable' => false
+        ]);
+
         $adminRole->attachPermissions($permissions);
     }
 }

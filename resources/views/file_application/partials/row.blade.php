@@ -15,7 +15,7 @@
     </td>
     <td class="align-middle">{{ $file_application->created_at->format(config('app.date_format')) }}</td>
     <td class="align-middle">
-        {{ $file_application->received_at ? $file_application->received_at->format(config('app.date_format')) : null }}
+        {{ $file_application->received_at ? $file_application->received_at->format(config('app.date_time_format')) : null }}
     </td>
     <td class="align-middle">
         <span class="badge badge-lg badge-{{ $color_statuses[$file_application->status] }}">
@@ -30,7 +30,7 @@
 
         @if ($file_application->status == 2)
             @permission('file_application.approve')
-                <a href="{{ route('file_application.edit', $file_application->id) }}" style="padding: 2px;" class="text-dark"
+                <a href="{{ route('file_application.approve', $file_application->id) }}" style="padding: 2px;" class="text-dark"
                     title="@lang('app.update_application')" data-toggle="tooltip" data-placement="top">
                     <i class="fas fa-check"></i>
                 </a>
@@ -41,12 +41,12 @@
 
         @if ($file_application->status == 1)
             <a href="{{ route('file_application.edit', $file_application->id) }}" style="padding: 2px;"
-                class="text-dark" title="@lang('app.edit_user')" data-toggle="tooltip" data-placement="top">
+                class="text-dark" title="@lang('app.edit_application')" data-toggle="tooltip" data-placement="top">
                 <i class="fas fa-edit"></i>
             </a>
 
-            <a href="{{ route('file_application.destroy', $file_application->id) }}" style="padding: 2px;"
-                class="text-dark" title="@lang('app.delete_user')" data-toggle="tooltip" data-placement="top"
+            <a href="{{ route('file_application.delete', $file_application->id) }}" style="padding: 2px;"
+                class="text-dark" title="@lang('app.delete_application')" data-toggle="tooltip" data-placement="top"
                 data-method="DELETE" data-confirm-title="@lang('app.please_confirm')" data-confirm-text="@lang('app.are_you_sure_delete_user')"
                 data-confirm-delete="@lang('app.yes_delete_him')">
                 <i class="fas fa-trash"></i>

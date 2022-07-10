@@ -695,7 +695,17 @@ $router->put('file_application/update/{file_application}', [
     'uses' => 'FileApplicationController@update'
 ]);
 
-$router->get('file_application/delete/{file_application}', [
+$router->delete('file_application/delete/{file_application}', [
     'as' => 'file_application.delete',
     'uses' => 'FileApplicationController@destroy'
+]);
+
+$router->get('file_application/approve/{file_application}', [
+    'as' => 'file_application.approve',
+    'uses' => 'FileApplicationController@approveForm'
+]);
+
+$router->put('file_application/approve/{file_application}', [
+    'as' => 'file_application.approve',
+    'uses' => 'FileApplicationController@approve'
 ]);

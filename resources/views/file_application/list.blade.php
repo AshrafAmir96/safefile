@@ -27,11 +27,11 @@
                                class="form-control input-solid"
                                name="search"
                                value="{{ Request::has('search') ? Request::get('search') : '' }}"
-                               placeholder="@lang('app.search_for_users')">
+                               placeholder="@lang('app.search_for_application')">
 
                             <span class="input-group-append">
                                 @if (Request::has('search') && Request::get('search') != '')
-                                    <a href="{{ route('user.list') }}"
+                                    <a href="{{ route('file_application.index') }}"
                                            class="btn btn-light d-flex align-items-center text-muted"
                                            role="button">
                                         <i class="fas fa-times"></i>
