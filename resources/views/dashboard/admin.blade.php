@@ -120,6 +120,16 @@
                 </div>
             </div>
         </div>
+        <div class="card">
+            <div class="card-header">
+                <h5>@lang('app.application_number_by_status') ({!! Carbon\Carbon::now()->format('Y') !!})</h5>
+            </div>
+            <div class="card-body">
+                <div class="pt-4 px-3">
+                    <canvas id="bar_graph" height="100"></canvas>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="col-12 col-md-4 text-center">
                 <h5>@lang('app.application_number_by_file')</h5>
@@ -160,10 +170,10 @@
         new Chart("donut", {
         type: "doughnut",
         data: {
-         
+            labels:["Urusniaga Tanah","Fail JOFA"],
             datasets: [{
             backgroundColor: barColors,
-            data: yValues
+            data: yValues,
             }]
         },
         options: {
@@ -178,10 +188,10 @@
         new Chart("donut2", {
         type: "doughnut",
         data: {
-         
+            labels:['Geran Tanah','Pelan Tanah'],
             datasets: [{
             backgroundColor: barColors,
-            data: [80,60]
+            data: [12,8],
             }]
         },
         options: {
@@ -212,7 +222,7 @@
         }
         });
 
-        var xValues3 = ["Johor", "Selangor", "Perlis", "Kedah", "Pahang"];
+        var xValues3 = ["Dalam Proses", "Disahkan", "Ditolak", "Fail Dikeluarkan", "Fail Diterima"];
         var yValues3 = [55, 90, 80, 60, 120];
         var barColors3= ["#80bfff", "#80bfff","#80bfff","#80bfff","#80bfff"];
 
@@ -228,7 +238,7 @@
         options: {
             legend: {display: false},
             title: {
-            display: true,
+            display: false,
             text: "Customer by State"
             }
         }

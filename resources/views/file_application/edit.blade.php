@@ -33,10 +33,11 @@
             ]) !!}
             <div class="card">
                 <div class="card-body">
-                    <div class="float-right2">
+                    <div class="float-right">
                         <span class="badge badge-lg badge-{{ $color_statuses[$file_application->status] }}">
                             {!! $statuses[$file_application->status] !!}
-                        </span></div>
+                        </span>
+                    </div>
                     <div class="form-group">
                         <label for="app_num">@lang('app.app_num')</label>
                         <div class="h6 font-weight-bold my-2">{!! $file_application->ref_num !!}</div>

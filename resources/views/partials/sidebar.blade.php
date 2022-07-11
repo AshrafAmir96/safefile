@@ -13,7 +13,7 @@
                 <span>@lang('app.dashboard')</span>
             </a>
         </li>
-        <li class="menu-header">Management</li>
+        <li class="menu-header">@lang('app.management')</li>
         <li class="{{ Request::is('file_application/index') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('file_application.index') }}">
                 <i class="fas fa-file-export"></i>
@@ -196,8 +196,7 @@
             @endpermission
             <li
                 class="nav-item dropdown {{ Request::is('role*') || Request::is('permission*') || Request::is('administrator*') ? 'active' : '' }}">
-                <a href="#" class="nav-link has-dropdown"><i class="fas fa-users-cog"></i> <span>Roles &
-                        Permissions</span></a>
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-users-cog"></i> <span>@lang('app.roles_and_permissions')</span></a>
                 <ul class="dropdown-menu">
                     @permission('roles.manage')
                         <li class="{{ Request::is('role*') ? 'active' : '' }}">
@@ -214,9 +213,9 @@
         @endpermission
 
         @permission(['settings.general', 'settings.auth', 'settings.notifications'], false)
-            <li class="menu-header">Settings</li>
+            <li class="menu-header">@lang('app.settings')</li>
             <li class="nav-item dropdown {{ Request::is('settings*') ? 'active' : '' }}">
-                <a href="#" class="nav-link has-dropdown"><i class="fas fa-cogs"></i> <span>Settings</span></a>
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-cogs"></i> <span>@lang('app.settings')</span></a>
                 <ul class="dropdown-menu">
                     @permission('settings.general')
                         <li class="{{ Request::is('settings') ? 'active' : '' }}">

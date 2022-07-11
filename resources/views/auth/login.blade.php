@@ -56,7 +56,7 @@
         </form>
         <div class="mt-4 text-muted text-center">
             @if (setting('reg_enabled'))
-                @lang('app.dont_have_an_account') <a class="font-weight-bold" href="<?= url("register") ?>">Sign Up</a>
+                @lang('app.dont_have_an_account') <a class="font-weight-bold" href="<?= url("register") ?>">@lang('app.sign_up')</a>
             @endif
         </div>
     </div>    

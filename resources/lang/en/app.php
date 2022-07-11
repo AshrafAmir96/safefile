@@ -528,4 +528,5 @@ return [
     'application_number' => 'Total File Application by Month',
     'application_number_by_file' => 'Total Application by File Type',
     'application_number_by_jofa' => 'Total Application by JOFA File Type',
+    'application_number_by_status' => 'Total Application by Status',
 ];

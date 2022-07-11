@@ -37,7 +37,7 @@
             @endif
             @yield('content')
             <div class="simple-footer">
-              Copyright &copy; {{ date('Y') }} {{ setting('app_name') }}
+              Hak Cipta &copy; {{ date('Y') }} {{ setting('app_name') }}
             </div>
           </div>
         </div>
