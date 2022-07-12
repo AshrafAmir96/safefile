@@ -7,8 +7,8 @@ as.dashboard.initChart = function () {
             {
                 label: trans.chartLabel,
                 backgroundColor: "transparent",
-                borderColor: "#6777ef",
-                pointBackgroundColor: "#6777ef",
+                borderColor: "#2c3c93",
+                pointBackgroundColor: "#2c3c93",
                 data: activities
             }
         ]
