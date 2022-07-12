@@ -1,7 +1,7 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/sbextech/safefile.sbextech.com/
+    - export DEPLOYPATH=/home/sbextech/spbbk.sbextech.com/
     - /bin/cp -r * $DEPLOYPATH
     - /bin/cp -r ./public/* $DEPLOYPATH/public_html/
     - /bin/cp ./public/js/*.js $DEPLOYPATH/public_html/js
