@@ -60,5 +60,7 @@
   <script src="{{ asset('assets/js/custom.js') }}"></script>
 
   <!-- Page Specific JS File -->
+  @yield('scripts')
+
 </body>
 </html>
